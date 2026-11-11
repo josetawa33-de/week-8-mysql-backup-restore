@@ -1,77 +1,36 @@
 
 /*
 ========================================================
-WEEK 8 ASSIGNMENT: MYSQL DATABASE BACKUP AND RESTORE
-Student: Joseph Tawa Samuel
+ADDITIONAL SECTION: DATABASE RESTORE COMMANDS
 ========================================================
-*/
 
-
-/*
-========================================================
-QUESTION 1: CREATING A COMPLETE DATABASE BACKUP
-========================================================
+1. Restoring the sales database:
 
 Command:
-
-mysqldump -u root -p sales > sales_backup.sql
+mysql -u root -p sales < sales_backup.sql
 
 Explanation:
-
-- mysqldump is a MySQL utility used to create database backups.
-- -u root specifies the MySQL username.
-- -p prompts the user to enter the MySQL password.
-- sales is the name of the database being backed up.
-- > redirects the backup output into a file.
-- sales_backup.sql is the backup file containing
-  the database structure and its data.
-
-Why regular database backups are important:
-
-Regular backups protect important information against
-accidental deletion, hardware failure, cyberattacks,
-and database corruption.
-
-They also help administrators restore databases
-and minimize data loss during unexpected failures.
-*/
+This command restores the sales database using
+the previously created sales_backup.sql file.
+It prompts for the MySQL root password before
+restoring the database.
 
 
-/*
-========================================================
-QUESTION 2: BACKING UP ALL DATABASES
-========================================================
+2. Restoring all databases:
 
 Command:
-
-mysqldump -u root -p --all-databases > all_databases_backup.sql
+mysql -u root -p < all_databases_backup.sql
 
 Explanation:
+This command restores all databases contained
+in the all_databases_backup.sql backup file.
 
-- mysqldump creates a backup of MySQL databases.
-- -u root specifies the MySQL username.
-- -p prompts for the database password.
-- --all-databases exports all databases on the server.
-- > redirects the output into a backup file.
-- all_databases_backup.sql is the resulting backup file.
+These restoration commands support disaster recovery
+by allowing database administrators to recover
+information after accidental deletion, system failure,
+or database corruption.
 
-Why backing up all databases is important before migration:
-
-Backing up all databases ensures that important
-information from every database is preserved before
-moving to another server.
-
-It helps prevent data loss, supports database recovery,
-and makes it easier to restore databases on the
-new server.
-
-It also helps maintain business continuity and
-reduces the risk of losing important records.
-*/
-
-
-/*
-========================================================
-END OF QUESTIONS 1 AND 2
+For point-in-time recovery, MySQL binary logs can
+also be used alongside a suitable database backup.
 ========================================================
 */
